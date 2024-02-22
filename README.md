@@ -1,3 +1,3 @@
-# Web Programming Assignment 1
+# Web Programming Class Activities
 
 This repository contains the code for my Web Programming Class Activities.
