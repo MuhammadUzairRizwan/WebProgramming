@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Buy Me.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="Task2signIn.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand mx-auto animated fadeInUp" style="font-family: fantasy;">Buy Me.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm" action="#">
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span> 
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span id="passwordError" class="error"></span> 
+        </div>
+        <button type="submit">Login</button>
+        <div class="text-center">Or sign in with:</div>
+        <div class="social-buttons">
+            <a href="#" class="facebook-btn">Sign in with Facebook</a><br><br>
+            <a href="#" class="google-btn">Sign in with Google</a>
+        </div>
+    </form>
+    <p class="text-center">Don't have an account? <a href="#">Sign up here</a></p>
+</div>
+
+<footer>
+    <div class="container-fluid padding">
+        <div class="row text-center">
+            <div class="col-12">
+                <h3>About US</h3>
+                <p>555-555-55</p>
+                <p>name, city, street</p>
+            </div>
+
+            <div class="col-12">
+                <hr class="light">
+                <h5>Buy Me.com&copy;</h5>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
