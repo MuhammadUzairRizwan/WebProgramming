@@ -25,12 +25,14 @@
         <div class="input-group">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span> 
         </div>
         <div class="input-group">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
+            <span id="passwordError" class="error"></span> 
         </div>
-        <button type="submit" id="loginButton">Login</button>
+        <button type="submit">Login</button>
         <div class="text-center">Or sign in with:</div>
         <div class="social-buttons">
             <a href="#" class="facebook-btn">Sign in with Facebook</a><br><br>
@@ -38,29 +40,6 @@
         </div>
     </form>
     <p class="text-center">Don't have an account? <a href="#">Sign up here</a></p>
-</div>
-<div class="container-fluid padding">
-    <div class="row welcome text-center">
-        <div class="col-12">
-            <h1 class="display-4">Buy Me.com</h1>
-            <h3>A Complete Clothing Brand.</h3>
-        </div>
-    </div>
-</div>
-
-<div class="container-fluid padding">
-    <div class="row text-center padding">
-        <div class="col-12">
-            <h2>Connect</h2>
-        </div>
-        <div class="col-12 social padding">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-    </div>
 </div>
 
 <footer>
@@ -83,7 +62,28 @@
 <script>
     document.getElementById('loginForm').addEventListener('submit', function(event) {
         event.preventDefault(); 
-        alert('Login Successful'); 
+
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        
+        var emailRegex = /\S+@\S+\.\S+/;
+
+       
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            return; 
+        }
+        
+        if (password.length < 6) {
+            document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+            return; 
+        }
+
+        alert('Login Successful!');
     });
 </script>
 
