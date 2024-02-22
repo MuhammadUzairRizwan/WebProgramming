@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Buy Me.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="Task2signup.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand mx-auto animated fadeInUp" style="font-family: fantasy;">Buy Me.com</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm" action="task2signin.html" onsubmit="return validateForm()">
+        <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+        <input type="text" id="username" name="username" placeholder="User Name" required>
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="date" id="birthdate" name="birthdate" placeholder="Birthdate" required>
+        <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+        <input type="text" id="zipcode" name="zipcode" placeholder="Zip Code" required>
+        <input type="text" id="country" name="country" placeholder="Country" required>
+        <input type="submit" value="Sign Up">
+    </form>
+    <p class="text-center">Already have an account? <a href="#">Log in here</a></p>
+</div>
+
+
+
+</body>
+</html>

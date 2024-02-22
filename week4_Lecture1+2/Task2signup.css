@@ -1,0 +1,92 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins' , sans-serif;
+    color:#222;
+   }
+  .navbar-brand{
+    font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  color:whitesmoke !important;
+  }
+  
+  .navbar{
+    padding: 0.8rem;
+    background-color: #411380 !important;
+    box-sizing: border-box;
+  
+  }
+  .navbar-nav li{
+  padding-right: 20px;
+  }
+  
+  
+  .social a{
+   font-size: 3em;
+   padding: 1rem;
+  
+  }
+  .fa-facebook{
+    color:#3b5998;
+  }
+  .fa-twitter{
+    color:#00aced
+  }
+  .fa-google-plus-g{
+    color: #dd4b39;
+  }
+  .fa-instagram{
+    color:#517fa4
+  }
+  .fa-youtube{
+    color:#bb0000;
+  }
+  
+  .fa-facebook:hover,
+  .fa-twitter:hover,
+  .fa-google-plus-g:hover,
+  .fa-instagram:hover,
+  .fa-youtube:hover{
+    color:#d5d5d5
+  }
+  footer{
+    background-color:#F5CECD;
+    color:black;
+    padding-top: 2rem;
+  }
+  
+  .container {
+          max-width: 400px;
+          margin: 50px auto;
+          background-color: #fff;
+         
+          padding: 20px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+  h2 {
+          text-align: center;
+          margin-bottom: 20px;
+     }
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 15px;
+          border: 1px solid #d3d2d2;
+          box-sizing: border-box;
+      }
+      input[type="submit"] {
+          width: 100%;
+          background-color: #1db954;
+          color: #fff;
+          padding: 10px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+      input[type="submit"]:hover {
+          background-color: #1bb44b;
+      }
+   
