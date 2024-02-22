@@ -58,6 +58,32 @@
         </div>
     </div>
 </footer>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); 
 
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        
+        var emailRegex = /\S+@\S+\.\S+/;
+
+       
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            return; 
+        }
+        
+        if (password.length < 6) {
+            document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+            return; 
+        }
+
+        alert('Login Successful!');
+    });
+</script>
 </body>
 </html>
