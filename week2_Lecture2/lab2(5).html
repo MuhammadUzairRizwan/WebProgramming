@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="lab2(1).css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first web page</title>
+</head>
+<body style="background-color: rgb(14, 131,191); color: whitesmoke;" >
+ 
+  <style>
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+    }
+
+    .container1 {
+        width: 300px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        animation: slideIn 5s ease-out; /* Animation definition */
+    }
+
+    @keyframes slideIn {
+        from {
+            margin-left: -100%; /* Start off-screen to the left */
+        }
+        to {
+            margin-left: 0; /* Slide in to the normal position */
+        }
+    }
+
+    .form-container h2 {
+        color: #333;
+    }
+
+    .form-container p {
+        color: #666;
+    }
+</style>
+
+
+
+<div class="form2">
+        <form>
+          <div class="container1">
+       <br><br> <input type="text" name="field1" placeholder="Name" /><br><br><br>
+        <input type="username" name="field2" placeholder="Username" /><br><br><br>
+        <input type="password" name="field3" placeholder="password" /><br><br><br>
+        <input type="number" name="field4" placeholder="number" /><br><br><br>
+        <input type="email" name="field5" placeholder="Email Address" /><br><br><br>
+        <input style=" background-color: #d34646;
+        color: white;
+        padding: 7px 50px;"  type="submit" value="REGISTER" /><br>
+      </div>  
+      </form>
+    </div>
+
+</body>
+</html>

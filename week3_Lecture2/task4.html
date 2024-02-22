@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days in Month</title>
+</head>
+<body>
+    <script>
+        function displayDaysInMonth(event) {
+            if (event.key === "Enter") {
+                const monthName = document.getElementById("monthInput").value.trim().substring(0, 3);
+                const daysInMonth = new Date(new Date().getFullYear(), new Date(monthName + ' 1, ' + new Date().getFullYear()).getMonth() + 1, 0).getDate();
+                const output = document.getElementById("output");
+                output.innerHTML = `Number of days in ${monthName} is <span style="color:red;">${daysInMonth}</span>.`;
+            }
+        }
+    </script>
+    <label for="monthInput">Enter the name of the month (e.g., Jan, Feb):</label>
+    <input type="text" id="monthInput" onkeypress="displayDaysInMonth(event)">
+    <div id="output"></div>
+</body>
+</html>
