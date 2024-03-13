@@ -9,6 +9,12 @@
         <title>Count child elements using jQuery. </title>
     </head>
     <body>
+        <script>
+            $(document).ready(function() {
+                var numberOfPElements = $('#selected').find('p').length;
+                alert("Number of <p> elements:"+numberOfPElements);
+            });
+        </script>
         <div id="selected">
             <p>Red</p>
             <p>White</p>
