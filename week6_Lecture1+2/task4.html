@@ -12,7 +12,13 @@
     </head>
 
     <body>
-             
+    <script>
+    $(document).ready(function(){
+        $('.remove-btn').click(function(){
+            $(this).closest('tr').remove();
+        });
+     });
+    </script>      
     <h2>Table</h2>
     <table id="myTable" border="5">
         <tr>
