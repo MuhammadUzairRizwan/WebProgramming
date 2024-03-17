@@ -1,15 +1,63 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
-        <!-- Required meta tags -->
+        <title>Rock Paper Scissors game</title>
         <meta charset="utf-8" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
     </head>
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    }
 
+    .container {
+        text-align: center;
+    }
+
+    .score {
+        margin-bottom: 20px;
+    }
+
+    .choices {
+        display: flex;
+        justify-content: center;
+    }
+
+    .choice {
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+
+    .choice img {
+        width: 100px;
+        height: auto;
+    }
+
+    .selection {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .selection img {
+        width: 100px;
+        height: auto;
+        margin: 0 20px;
+    }
+
+    </style>
     <body>
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -22,6 +70,74 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
-   
+     
+        <div class="container">
+            <h1>Rock Paper Scissors</h1>
+            <div class="score">Player: <span id="player-score">0</span> - Computer: <span id="computer-score">0</span></div>
+            <div class="choices">
+                <button class="choice" data-choice="rock"><img src="https://icons.iconarchive.com/icons/fa-team/fontawesome-emoji/128/FontAwesome-Emoji-Hand-Back-Fist-icon.png" alt="Rock"></button>
+                <button class="choice" data-choice="paper"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Font_Awesome_5_regular_hand-paper.svg/1200px-Font_Awesome_5_regular_hand-paper.svg.png" alt="Paper"></button>
+                <button class="choice" data-choice="scissors"><img style="height:150px;width: auto;" src="https://w7.pngwing.com/pngs/367/153/png-transparent-finger-computer-icons-scissors-hand-scissors-text-hand-technic.png" alt="Scissors"></button>
+            </div>
+            <div class="result" id="result"></div>
+            <div class="selection">
+                <img id="player-choice" src="" alt="">
+                <img id="computer-choice" src="" alt="">
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script>
+
+                $(document).ready(function() {
+                var playerScore = 0;
+                var computerScore = 0;
+
+                $('.choice').click(function() {
+                    var playerChoice = $(this).data('choice');
+                    var computerChoice = generateComputerChoice();
+
+                    var result = getResult(playerChoice, computerChoice);
+                    updateScore(result);
+
+                    $('#result').text('You chose ' + playerChoice + ', computer chose ' + computerChoice + '. ' + result);
+
+                    $('#player-choice').attr('src', playerChoice + '.png');
+                    $('#computer-choice').attr('src', computerChoice + '.png');
+                });
+
+                function generateComputerChoice() {
+                    var choices = ['rock', 'paper', 'scissors'];
+                    var randomIndex = Math.floor(Math.random() * 3);
+                    return choices[randomIndex];
+                }
+
+                function getResult(playerChoice, computerChoice) {
+                    if (playerChoice === computerChoice) {
+                        return "It's a tie!";
+                    } else if (
+                        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                        (playerChoice === 'paper' && computerChoice === 'rock') ||
+                        (playerChoice === 'scissors' && computerChoice === 'paper')
+                    ) {
+                        return 'You win!';
+                    } else {
+                        return 'Computer wins!';
+                    }
+                }
+
+                function updateScore(result) {
+                    if (result === 'You win!') {
+                        playerScore++;
+                    } else if (result === 'Computer wins!') {
+                        computerScore++;
+                    }
+                    $('#player-score').text(playerScore);
+                    $('#computer-score').text(computerScore);
+                }
+            });
+
+        </script>
+    
+    
     </body>
 </html>
