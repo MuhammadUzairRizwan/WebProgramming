@@ -9,57 +9,44 @@
         />
 
     </head>
-<style>
-    body {
-    font-family: Arial, sans-serif;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #5d98d7;
+        }
 
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        .container {
+            background-color: #fff;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-input[type="text"] {
-    padding: 8px;
-    width: 60%;
-    margin-right: 10px;
-}
+        input[type="text"] {
+            padding: 8px;
+            width: 60%;
+            margin-right: 10px;
+        }
 
-button {
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
 
-</style>
-    <body>
-
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-        <script>
- 
-        </script>
-
-
-
-
+        #currentConditions, #forecast {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
     <div class="container">
+        <h2>Weather Application</h2>
         <input type="text" id="cityInput" placeholder="Enter city">
         <button id="searchBtn">Search</button>
         <div id="currentConditions"></div>
@@ -67,9 +54,51 @@ button {
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchBtn').click(function() {
+                var city = $('#cityInput').val();
+                getWeather(city);
+            });
+        });
 
+        function getWeather(city) {
+            var apiKey = '1af16794f138bf418d933ba2f1330bd6';
+            var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-          
-    </body>
+            $.get(apiUrl, function(data) {
+                // Update current conditions UI
+                $('#currentConditions').html(`
+                    <h2>Current Weather in ${city}</h2>
+                    <p>Temperature: ${data.main.temp}°C</p>
+                    <p>Description: ${data.weather[0].description}</p>
+                `);
+            });
+
+            var forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+
+            $.get(forecastUrl, function(data) {
+                // Update forecast UI
+                $('#forecast').html('<h2>5-Day Forecast</h2>');
+                var currentDate = new Date(data.list[0].dt_txt).getDate();
+                for (var i = 0; i < data.list.length; i++) {
+                    // Extract date from dt_txt
+                    var date = new Date(data.list[i].dt_txt);
+                    // Display forecast for every new day
+                    if (new Date(data.list[i].dt_txt).getDate() !== currentDate) {
+                        $('#forecast').append(`
+                            <div>
+                                <p>Date: ${date.toLocaleDateString()}</p>
+                                <p>Temperature: ${data.list[i].main.temp}°C</p>
+                                <p>Description: ${data.list[i].weather[0].description}</p>
+                                <hr>
+                            </div>
+                        `);
+                        currentDate = new Date(data.list[i].dt_txt).getDate();
+                    }
+                }
+            });
+        }
+    </script>
+</body>
 </html>
