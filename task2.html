@@ -1,14 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Title</title>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,6 +37,12 @@
         #currentConditions, #forecast {
             margin-top: 20px;
         }
+
+        .weather-icon {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -67,30 +68,32 @@
             var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
             $.get(apiUrl, function(data) {
-                // Update current conditions UI
                 $('#currentConditions').html(`
                     <h2>Current Weather in ${city}</h2>
-                    <p>Temperature: ${data.main.temp}°C</p>
-                    <p>Description: ${data.weather[0].description}</p>
+                    <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="Weather Icon" class="weather-icon" 
+                     style="height: 150px;width: auto;margin-left:23%;">
+                    <h2  style="margin-left:30%;">${data.main.temp}°C</h2>
+                    <p  style="margin-left:26%;">${data.weather[0].description}</p>
+                    <p style="margin-left:26%;">Feels Like: ${data.main.feels_like}°C</p>
+                    <p style="margin-left:26%;">Humidity: ${data.main.humidity}%</p>
                 `);
             });
 
             var forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
             $.get(forecastUrl, function(data) {
-                // Update forecast UI
                 $('#forecast').html('<h2>5-Day Forecast</h2>');
                 var currentDate = new Date(data.list[0].dt_txt).getDate();
                 for (var i = 0; i < data.list.length; i++) {
-                    // Extract date from dt_txt
                     var date = new Date(data.list[i].dt_txt);
-                    // Display forecast for every new day
                     if (new Date(data.list[i].dt_txt).getDate() !== currentDate) {
                         $('#forecast').append(`
                             <div>
-                                <p>Date: ${date.toLocaleDateString()}</p>
-                                <p>Temperature: ${data.list[i].main.temp}°C</p>
-                                <p>Description: ${data.list[i].weather[0].description}</p>
+                                <p style="margin-left:26%;">${date.toLocaleDateString()}</p>
+                                <img src="https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" alt="Weather Icon" class="weather-icon"
+                                style="height: 150px;width: auto;margin-left:23%;">
+                                <h2 style="margin-left:26%;">${data.list[i].main.temp}°C</h2>
+                                <p style="margin-left:26%;">${data.list[i].weather[0].description}</p>
                                 <hr>
                             </div>
                         `);
