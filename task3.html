@@ -1,25 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Title</title>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-    <body>
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
+        .clock {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+        .card {
+            background-color: #1E90FF; /* Blue for hours */
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 5px;
+        }
+
+        #minutes-card {
+            background-color: #32CD32; /* Green for minutes */
+        }
+
+        #seconds-card {
+            background-color: #FF6347; /* Red for seconds */
+        }
+
+        #period-card {
+            background-color: #FFD700; /* Yellow for period */
+        }
+
+        .row {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div class="row" style="height:100px;">
+            <div class="card" id="hours-card">
+                <div class="title">Hours</div>
+                <hr>
+            
+            <div id="hours" style="font-weight: bold;">00</div>
+            </div>
+            <div class="card" id="minutes-card">
+                <div class="title">Minutes</div>
+                <hr>
+                <div id="minutes" style="font-weight: bold;">00</div>
+            </div>
+            <div class="card" id="seconds-card">
+                <div class="title" >Seconds</div>
+                <hr>
+                <div id="seconds" style="font-weight: bold;">00</div>
+            </div>
+            <div class="card" id="period-card">
+                <div class="title">Period</div>
+                <hr>
+                <div id="period" style="font-weight: bold;">AM</div>
+            </div>
+        </div>
+      
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            updateClock();
+            setInterval(updateClock, 1000); 
+
+            function updateClock() {
+                var now = new Date();
+                var hours = now.getHours();
+                var period = 'AM'; 
+
+                if (hours >= 12) {
+                    period = 'PM';
+                }
+
+                if (hours > 12) {
+                    hours -= 12;
+                } else if (hours === 0) {
+                    hours = 12;
+                }
+
+                var minutes = now.getMinutes().toString().padStart(2, '0');
+                var seconds = now.getSeconds().toString().padStart(2, '0');
+
+                $('#hours').text(hours);
+                $('#minutes').text(minutes);
+                $('#seconds').text(seconds);
+                $('#period').text(period);
+            }
+        });
+    </script>
+</body>
 </html>
